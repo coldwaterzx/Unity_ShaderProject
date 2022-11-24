@@ -1,18 +1,16 @@
-﻿Shader "Custom/ToonShader"
+Shader "Custom/Toon Ramp"
 {
     Properties
     {
-        _Ramp("Color", 2D) = "white" {}
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
-        _Glossiness ("Smoothness", Range(0,1)) = 0.5
-        _Metallic ("Metallic", Range(0,1)) = 0.0
+        _Ramp("Ramp (RGB)", 2D) = "white" {}
     }
     SubShader
     {
         Tags { "RenderType"="Opaque" }
         LOD 200
 
-   CGPROGRAM
+        CGPROGRAM
     #pragma surface surf Ramp
 
     sampler2D _Ramp;
@@ -24,7 +22,6 @@
         half4 c;
         c.rgb = s.Albedo * _LightColor0.rgb * ramp * atten;
         c.a = s.Alpha;
-        
         return c;
     }
 
